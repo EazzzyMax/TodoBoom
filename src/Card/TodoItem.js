@@ -4,17 +4,14 @@ import GlobalStyle from '../utils/GlobalStyle';
 import { useState } from 'react';
 import TodoItemModal from '../TodoItemModal/TodoItemModal';
 
-export default function TodoItem({ removeTodo, todo }) {
-  const [todoModalVisible, setTodoModalVisible] = useState(false);
-  
+export default function TodoItem({ openTodoModal, todo }) {
   return (
-    <TouchableOpacity onPress={() => removeTodo(todo.id)} style={s.container}>
-      <TodoItemModal visible={todoModalVisible} closeModal={() => setTodoModalVisible(false)} />;
+    <TouchableOpacity onPress={() => openTodoModal(todo.id)} style={s.container}>
       <View style={s.content}>
         <TodoCheckBox />
         <View style={s.textContent}>
           <Text style={[GlobalStyle.Raleway500Font, s.title]}>{todo.title}</Text>
-          <Text style={[GlobalStyle.Raleway400Font, s.desc]}>{todo.description}</Text>
+          {!!todo.description && <Text style={[GlobalStyle.Raleway400Font, s.desc]}>{todo.description}</Text>}
         </View>
       </View>
       <View style={s.line} />
@@ -26,20 +23,21 @@ const s = StyleSheet.create({
   container: {},
   content: {
     flexDirection: 'row',
-    marginBottom: 5,
   },
   textContent: {
     // backgroundColor: 'rgba(255,0,0,0.1)',
     flexShrink: 1,
   },
   title: {
+    // backgroundColor: 'rgba(0,255,0,0.1)',
     fontSize: 18,
     lineHeight: 24,
     color: '#fff',
     flexShrink: 1,
-    marginBottom: 5,
   },
   desc: {
+    marginTop: 5,
+    // backgroundColor: 'rgba(0,0,255,0.1)',
     color: '#aaa',
     fontSize: 16,
     textAlignVertical: 'center',

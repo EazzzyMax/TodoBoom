@@ -5,14 +5,17 @@ import CreateTodoModal from '../CreateTodoModal/CreateTodoModal';
 import Navbar from '../Navbar/Navbar';
 import TodoItemModal from '../TodoItemModal/TodoItemModal';
 
+log
 export default function Main() {
   const [addTodoModalVisible, setAddTodoModalVisible] = useState(false);
+  const [todoModalVisible, setTodoModalVisible] = useState(false);
+  const [currentID, setCurrentID] = useState();
 
   const [todos, setTodos] = useState([
     {
       id: 1,
       title: `Wellcome to TodoBoom!`,
-      description: `Press on me to see more information!`,
+      description: `Press on me to see open menu!`,
     },
   ]);
 
@@ -23,16 +26,17 @@ export default function Main() {
   const removeTodo = (id) => {
     setTodos(todos.filter((p) => p.id !== id));
   };
+  const openTodoModal = (id) => {
+    setTodoModalVisible(true);
+    setCurrentID(id);
+  };
 
   return (
     <SafeAreaView style={s.mainContainer}>
-      <CreateTodoModal
-        addTodo={addTodo}
-        modalVisible={addTodoModalVisible}
-        closeModal={() => setAddTodoModalVisible(false)}
-      />
+      <CreateTodoModal addTodo={addTodo} modalVisible={addTodoModalVisible} closeModal={() => setAddTodoModalVisible(false)} />
+      <TodoItemModal visible={todoModalVisible} closeModal={() => setTodoModalVisible(false)} currentID={currentID} removeTodo={removeTodo} />
       <View style={s.container}>
-        <Card todos={todos} setTodos={setTodos} removeTodo={removeTodo} />
+        <Card todos={todos} setTodos={setTodos} openTodoModal={openTodoModal} />
         <Navbar onPressBtn={() => setAddTodoModalVisible(true)} />
       </View>
     </SafeAreaView>

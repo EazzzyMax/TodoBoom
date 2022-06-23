@@ -1,10 +1,17 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Modal from 'react-native-modal';
 import GlobalStyle from '../utils/GlobalStyle';
 
-export default function TodoItemModal({ closeModal, visible }) {
+export default function TodoItemModal({removeTodo, closeModal, visible , currentID}) {
+  const handleDelete = () => {
+    closeModal();
+    removeTodo(currentID);
+  }
+
   return (
     <Modal
+      animationIn='fadeIn'
+      animationOut='fadeOut'
       style={s.outerModal}
       isVisible={visible}
       onBackButtonPress={closeModal}
@@ -13,9 +20,9 @@ export default function TodoItemModal({ closeModal, visible }) {
       backdropOpacity={0.8}
       useNativeDriver={true}
     >
-      <View style={s.innerModal}>
+      <TouchableOpacity onPress={handleDelete} style={s.innerModal}>
         <Text style={[GlobalStyle.Montserrat600Font, s.closeTxt]}>Delete</Text>
-      </View>
+      </TouchableOpacity>
     </Modal>
   );
 }

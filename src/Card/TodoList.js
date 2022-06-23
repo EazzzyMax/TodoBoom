@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import TodoItem from './TodoItem';
 
-export default function TodoList({ todos, setTodos, removeTodo }) {
+export default function TodoList({ todos, setTodos, openTodoModal}) {
   const renderItem = ({ item }) => (
-    <TodoItem removeTodo={removeTodo} todo={item} />
+    <TodoItem openTodoModal={openTodoModal} todo={item} />
   );
 
   return (
