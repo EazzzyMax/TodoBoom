@@ -1,9 +1,9 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { PlusIcon } from './PlusIcon';
 
-export default function AddTodoBtn() {
+export default function AddTodoBtn({onPress}) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <View style={s.button}>
         <PlusIcon/>
       </View>

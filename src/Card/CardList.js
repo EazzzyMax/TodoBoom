@@ -1,12 +1,10 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import Card from './Card/Card';
+import Card from './Card';
 
 export default function CardList() {
   return (
     <View style={s.container}>
-      {/* <ScrollView contentContainerStyle={s.scrollView}> */}
         <Card />
-      {/* </ScrollView> */}
     </View>
   );
 }

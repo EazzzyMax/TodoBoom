@@ -1,20 +1,18 @@
+import { useState } from 'react';
 import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import TodoItem from './TodoItem';
 
-const DATA = [];
-for (let i = 1; i <= 30; i++) {
-  DATA.push({ id: i.toString(), title: `item ${i}` });
-}
-
-export default function TodoList() {
-  const renderItem = ({ item }) => <TodoItem title={item.title} />;
+export default function TodoList({ todos, setTodos, removeTodo }) {
+  const renderItem = ({ item }) => (
+    <TodoItem removeTodo={removeTodo} todo={item} />
+  );
 
   return (
     <View style={s.container}>
       <FlatList
         style={s.scrollView}
         contentContainerStyle={s.ccStyle}
-        data={DATA}
+        data={todos}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
@@ -25,7 +23,6 @@ export default function TodoList() {
 const s = StyleSheet.create({
   scrollView: {
     flex: 1,
-    // borderWidth: 1,
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
     borderColor: '#50caff',
@@ -34,8 +31,6 @@ const s = StyleSheet.create({
     padding: 20,
   },
   container: {
-    // borderWidth: 1,
-    // borderColor: '#84f',
     flex: 1,
   },
 });

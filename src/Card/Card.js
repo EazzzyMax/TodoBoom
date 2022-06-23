@@ -2,12 +2,12 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import CardHeader from './CardHeader';
 import TodoList from './TodoList';
 
-export default function Card() {
+export default function Card({ todos, setTodos, removeTodo }) {
   return (
-      <View style={s.container}>
-        <CardHeader />
-        <TodoList />
-      </View>
+    <View style={s.container}>
+      <CardHeader />
+      <TodoList todos={todos} setTodos={setTodos} removeTodo={removeTodo} />
+    </View>
   );
 }
 
