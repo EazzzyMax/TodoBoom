@@ -5,7 +5,7 @@ import CreateTodoModal from '../CreateTodoModal/CreateTodoModal';
 import Navbar from '../Navbar/Navbar';
 import TodoItemModal from '../TodoItemModal/TodoItemModal';
 
-log
+
 export default function Main() {
   const [addTodoModalVisible, setAddTodoModalVisible] = useState(false);
   const [todoModalVisible, setTodoModalVisible] = useState(false);
@@ -33,8 +33,17 @@ export default function Main() {
 
   return (
     <SafeAreaView style={s.mainContainer}>
-      <CreateTodoModal addTodo={addTodo} modalVisible={addTodoModalVisible} closeModal={() => setAddTodoModalVisible(false)} />
-      <TodoItemModal visible={todoModalVisible} closeModal={() => setTodoModalVisible(false)} currentID={currentID} removeTodo={removeTodo} />
+      <CreateTodoModal
+        addTodo={addTodo}
+        modalVisible={addTodoModalVisible}
+        closeModal={() => setAddTodoModalVisible(false)}
+      />
+      <TodoItemModal
+        visible={todoModalVisible}
+        closeModal={() => setTodoModalVisible(false)}
+        currentID={currentID}
+        removeTodo={removeTodo}
+      />
       <View style={s.container}>
         <Card todos={todos} setTodos={setTodos} openTodoModal={openTodoModal} />
         <Navbar onPressBtn={() => setAddTodoModalVisible(true)} />
