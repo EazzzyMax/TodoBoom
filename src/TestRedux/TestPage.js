@@ -6,7 +6,9 @@ export default function TestPage() {
   return (
     <View style={s.container}>
       <Text style={[GlobalStyle.Montserrat600Font, s.pageName]}>Counter</Text>
-      <Counter/>
+      <View style={s.counterContainer}>
+        <Counter />
+      </View>
     </View>
   );
 }
@@ -21,5 +23,8 @@ const s = StyleSheet.create({
   pageName: {
     fontSize: 34,
     color: '#fff',
+  },
+  counterContainer: {
+    marginBottom: -20,
   },
 });

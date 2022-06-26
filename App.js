@@ -1,17 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native';
-import AppLoading from 'expo-app-loading';
+import { StyleSheet } from 'react-native';
 import { useFonts, Montserrat_600SemiBold } from '@expo-google-fonts/montserrat';
 import { Raleway_400Regular, Raleway_500Medium } from '@expo-google-fonts/raleway';
-import Main from './src/Pages/Main';
-import { Provider } from 'react-redux';
-import { store } from './src/redux/store';
+import { PTMono_400Regular } from '@expo-google-fonts/pt-mono';
+
+import AppLoading from 'expo-app-loading';
 import TestPage from './src/TestRedux/TestPage';
+import { Main } from "./src/Pages/Main";
+
+import { store } from './src/TestRedux/store';
+import { Provider } from 'react-redux';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
     Montserrat_600SemiBold,
     Raleway_400Regular,
     Raleway_500Medium,
+    PTMono_400Regular,
   });
 
   if (!fontsLoaded) {
@@ -19,9 +23,7 @@ export default function App() {
   }
 
   return (
-    <Provider store={store}>
-      <TestPage/>
-    </Provider>
+      <Main/>
   );
 }
 

@@ -10,4 +10,7 @@ export default StyleSheet.create({
   Montserrat600Font: {
     fontFamily: `Montserrat_600SemiBold`,
   },
+  PTMono: {
+    fontFamily: 'PTMono_400Regular'
+  }
 });
