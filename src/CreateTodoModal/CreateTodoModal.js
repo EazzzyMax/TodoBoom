@@ -5,10 +5,13 @@ import CreateTodoSettings from './CreateTodoSettings';
 import { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { CreateIcon } from './Icons/CreateIcon';
+import { useDispatch } from "react-redux";
 
-export default function CreateTodoModal({ addTodo, closeModal, modalVisible }) {
+export default function CreateTodoModal({ closeModal, modalVisible }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const dispatch = useDispatch();
+  const addTask = () => dispatch();
 
   const createNewTodo = () => {
     const newTodo = {
@@ -16,7 +19,7 @@ export default function CreateTodoModal({ addTodo, closeModal, modalVisible }) {
       description: description,
       id: Date.now(),
     };
-    addTodo(newTodo);
+    // addTodo(newTodo);
     setTitle('');
     setDescription('');
   };

@@ -11,18 +11,6 @@ export default function Main() {
   const [todoModalVisible, setTodoModalVisible] = useState(false);
   const [currentID, setCurrentID] = useState();
 
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      title: `Wellcome to TodoBoom!`,
-      description: `Press on me to see open menu!`,
-    },
-  ]);
-
-  const addTodo = (newTodo) => {
-    setTodos([...todos, newTodo]);
-    setAddTodoModalVisible(false);
-  };
   const removeTodo = (id) => {
     setTodos(todos.filter((p) => p.id !== id));
   };
@@ -34,7 +22,6 @@ export default function Main() {
   return (
     <SafeAreaView style={s.mainContainer}>
       <CreateTodoModal
-        addTodo={addTodo}
         modalVisible={addTodoModalVisible}
         closeModal={() => setAddTodoModalVisible(false)}
       />
@@ -45,7 +32,7 @@ export default function Main() {
         removeTodo={removeTodo}
       />
       <View style={s.container}>
-        <Card todos={todos} setTodos={setTodos} openTodoModal={openTodoModal} />
+        <Card openTodoModal={openTodoModal} />
         <Navbar onPressBtn={() => setAddTodoModalVisible(true)} />
       </View>
     </SafeAreaView>

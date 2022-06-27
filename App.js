@@ -4,11 +4,9 @@ import { Raleway_400Regular, Raleway_500Medium } from '@expo-google-fonts/ralewa
 import { PTMono_400Regular } from '@expo-google-fonts/pt-mono';
 
 import AppLoading from 'expo-app-loading';
-import TestPage from './src/TestRedux/TestPage';
-import { Main } from "./src/Pages/Main";
-
-import { store } from './src/TestRedux/store';
+import Main from './src/Pages/Main';
 import { Provider } from 'react-redux';
+import { store } from './src/redux/store';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -23,7 +21,9 @@ export default function App() {
   }
 
   return (
-      <Main/>
+    <Provider store={store}>
+      <Main />
+    </Provider>
   );
 }
 

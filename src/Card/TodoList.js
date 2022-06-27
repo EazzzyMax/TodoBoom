@@ -1,11 +1,11 @@
-import { useState } from 'react';
 import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import TodoItem from './TodoItem';
+import { useSelector, useDispatch } from 'react-redux';
 
-export default function TodoList({ todos, setTodos, openTodoModal}) {
-  const renderItem = ({ item }) => (
-    <TodoItem openTodoModal={openTodoModal} todo={item} />
-  );
+export default function TodoList({ openTodoModal }) {
+  const todos = useSelector((state) => state.todos.todos);
+
+  const renderItem = ({ item }) => <TodoItem openTodoModal={openTodoModal} todo={item} />;
 
   return (
     <View style={s.container}>
