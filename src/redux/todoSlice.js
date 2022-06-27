@@ -3,13 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 const todoSlice = createSlice({
   name: 'todos',
   initialState: {
-    todos: [{
-      id: 1,
-      title: 'Wellcome to TodoBom!',
-      desc: 'Press on me to see more',
-      completed: false,
-    }],
-    currentTodo: {},
+    todos: [
+      {
+        id: 1,
+        title: 'Wellcome to TodoBom!',
+        desc: 'Press on me to see more',
+        completed: false,
+      },
+    ],
   },
   reducers: {
     addTodo(state, action) {
@@ -24,12 +25,9 @@ const todoSlice = createSlice({
       state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
     },
     toggleTodoComplete(state, action) {},
-    dispatchCurrentTodo(state, action) {
-      state.currentTodo = action.payload.todo;
-    },
   },
 });
 
 export default todoSlice.reducer;
 
-export const { addTodo, removeTodo, toggleTodoComplete, dispatchCurrentTodo} = todoSlice.actions;
+export const { addTodo, removeTodo, toggleTodoComplete } = todoSlice.actions;

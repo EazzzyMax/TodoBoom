@@ -10,12 +10,9 @@ const modalSlice = createSlice({
     toggleCreateModal(state, action) {
       state.create = action.payload;
     },
-    toggleContextModal(state, action) {
-      state.context = action.payload;
-    },
   },
 });
 
 export default modalSlice.reducer;
 
-export const { toggleContextModal, toggleCreateModal } = modalSlice.actions;
+export const { toggleCreateModal } = modalSlice.actions;

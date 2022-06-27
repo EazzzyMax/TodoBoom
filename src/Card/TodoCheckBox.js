@@ -1,10 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native';
 
 export default function TodoCheckBox() {
-  return (
-    <View style={s.checkbox} >
-    </View>
-  )
+  return <View style={s.checkbox} />;
 }
 
 const s = StyleSheet.create({
@@ -15,5 +12,5 @@ const s = StyleSheet.create({
     borderRadius: 12.5,
     borderColor: '#888',
     borderWidth: 1,
-  }
-})
+  },
+});

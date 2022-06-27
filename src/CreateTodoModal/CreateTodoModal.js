@@ -1,24 +1,20 @@
-import { Button, KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet,  View } from 'react-native';
 import CreateTodoInput from './CreateTodoInput';
 import Modal from 'react-native-modal';
 import { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { CreateIcon } from './Icons/CreateIcon';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addTodo } from '../redux/todoSlice';
-import { toggleCreateModal } from '../redux/modalSlice';
 
-export default function CreateTodoModal({}) {
-  const dispatch = useDispatch();
-
-  const isVisible = useSelector((state) => state.modals.create);
-  const closeModal = () => dispatch(toggleCreateModal(false));
-
+export default function CreateTodoModal({isVisible, closeModal}) {
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
+  
+  const dispatch = useDispatch();
   const createNewTodo = () => {
-    if (title.length > 0) {
-      dispatch(addTodo({ title, desc }));
+    if (title.trim().length) {
+      dispatch(addTodo({ title: title.trim(), desc: desc.trim() }));
       setTitle('');
       setDesc('');
       closeModal();

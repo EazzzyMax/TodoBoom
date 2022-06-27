@@ -4,7 +4,6 @@ export default function CardHeader() {
   return (
     <View style={s.container}>
       <Text style={s.name}>Category name</Text>
-      
     </View>
   )
 }

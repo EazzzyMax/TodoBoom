@@ -1,13 +1,10 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { PlusIcon } from './PlusIcon';
-import { useDispatch } from 'react-redux';
-import { toggleCreateModal } from '../redux/modalSlice';
 
-export default function AddTodoBtn() {
-  const dispatch = useDispatch();
+export default function AddTodoBtn({openModal}) {
 
   return (
-    <TouchableOpacity onPress={() => dispatch(toggleCreateModal(true))}>
+    <TouchableOpacity onPress={openModal}>
       <View style={s.button}>
         <PlusIcon />
       </View>

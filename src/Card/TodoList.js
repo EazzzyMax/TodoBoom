@@ -1,16 +1,14 @@
-import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import TodoItem from './TodoItem';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export default function TodoList() {
   const todos = useSelector((state) => state.todos.todos);
-
   const renderItem = ({ item }) => <TodoItem todo={item} />;
 
   return (
     <View style={s.container}>
       <FlatList
-        style={s.scrollView}
         contentContainerStyle={s.ccStyle}
         data={todos}
         renderItem={renderItem}
@@ -21,12 +19,6 @@ export default function TodoList() {
 }
 
 const s = StyleSheet.create({
-  scrollView: {
-    flex: 1,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
-    borderColor: '#50caff',
-  },
   ccStyle: {
     padding: 20,
   },

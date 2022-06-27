@@ -1,25 +1,16 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import TodoCheckBox from './TodoCheckBox';
 import GlobalStyle from '../utils/GlobalStyle';
-
-import { useDispatch } from 'react-redux';
-import { dispatchCurrentTodo } from '../redux/todoSlice';
-import { toggleContextModal } from '../redux/modalSlice';
+import { TodoContextModal }  from './TodoContextModal';
+import { useState } from 'react';
 
 export default function TodoItem({ todo }) {
-  const dispatch = useDispatch();
-  const setCurrentTodo = () => dispatch(dispatchCurrentTodo({ todo }));
-  const openTodoModal = () => dispatch(toggleContextModal(true));
+  const [contextVisibility, setContextVisibility] = useState(false);
 
   return (
     <View>
-      <TouchableOpacity
-        onPress={() => {
-          setCurrentTodo();
-          openTodoModal();
-        }}
-        style={s.content}
-      >
+      <TodoContextModal isVisible={contextVisibility} todo={todo} closeModal={() => setContextVisibility(false)} />
+      <TouchableOpacity onPress={() => setContextVisibility(true)} style={s.content}>
         <TodoCheckBox />
         <View style={s.textContent}>
           <Text style={[GlobalStyle.Raleway500Font, s.title]}>{todo.title}</Text>
@@ -40,15 +31,13 @@ const s = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    lineHeight: 24,
+    lineHeight: 23,
     color: '#fff',
-    flexShrink: 1,
   },
   desc: {
     marginTop: 5,
     color: '#aaa',
     fontSize: 16,
-    textAlignVertical: 'center',
   },
   line: {
     marginVertical: 10,
