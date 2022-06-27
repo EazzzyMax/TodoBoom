@@ -1,10 +1,10 @@
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AddTodoBtn from './AddTodoBtn';
 
-export default function Navbar({ onPressBtn }) {
+export default function Navbar({ }) {
   return (
     <View style={s.nav}>
-      <AddTodoBtn onPress={onPressBtn} />
+      <AddTodoBtn  />
     </View>
   );
 }

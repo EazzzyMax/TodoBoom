@@ -2,11 +2,11 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import CardHeader from './CardHeader';
 import TodoList from './TodoList';
 
-export default function Card({ openTodoModal }) {
+export default function Card() {
   return (
     <View style={s.container}>
       <CardHeader />
-      <TodoList openTodoModal={openTodoModal} />
+      <TodoList  />
     </View>
   );
 }
