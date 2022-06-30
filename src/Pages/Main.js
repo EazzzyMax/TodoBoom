@@ -1,12 +1,13 @@
-import {  SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import Card from '../Card/Card';
+import CardList from '../CardList';
 import Navbar from '../Navbar/Navbar';
 
 export default function Main() {
   return (
-    <SafeAreaView style={s.mainContainer}>
+    <SafeAreaView style={s.safeArea}>
       <View style={s.container}>
-        <Card />
+        <CardList />
         <Navbar />
       </View>
     </SafeAreaView>
@@ -14,12 +15,12 @@ export default function Main() {
 }
 
 const s = StyleSheet.create({
-  mainContainer: {
+  safeArea: {
     flexGrow: 1,
-    backgroundColor: '#222',
+    paddingTop: StatusBar.currentHeight,
   },
   container: {
     backgroundColor: '#111',
-    flexGrow: 1,
-  },
+    flex: 1,
+  }
 });

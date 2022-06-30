@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import { useFonts, Montserrat_600SemiBold } from '@expo-google-fonts/montserrat';
 import { Raleway_400Regular, Raleway_500Medium } from '@expo-google-fonts/raleway';
 import { PTMono_400Regular } from '@expo-google-fonts/pt-mono';
@@ -7,6 +7,7 @@ import AppLoading from 'expo-app-loading';
 import Main from './src/Pages/Main';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
+import TextPage from './src/Pages/TextPage';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -22,9 +23,24 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <Main />
+      <View style={s.container}>
+        {/* <SafeAreaView style={s.safeArea}> */}
+          <StatusBar hidden={false} translucent={true} backgroundColor='rgba(17, 17, 17, 0.5)' />
+          <Main/>
+        {/* </SafeAreaView> */}
+      </View>
     </Provider>
   );
 }
 
-const s = StyleSheet.create({});
+const paddingTop = StatusBar.currentHeight;
+const s = StyleSheet.create({
+  container: {
+    backgroundColor: '#222',
+    flex: 1,
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: 'rgba(17, 17, 17, 0.6)',
+  },
+});

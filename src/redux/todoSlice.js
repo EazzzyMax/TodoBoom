@@ -4,12 +4,7 @@ const todoSlice = createSlice({
   name: 'todos',
   initialState: {
     todos: [
-      {
-        id: 1,
-        title: 'Wellcome to TodoBom!',
-        desc: 'Press on me to see more',
-        completed: false,
-      },
+      { id: 1, title: 'Wellcome to TodoBom!', desc: 'Press on me to see more', completed: false, },
     ],
   },
   reducers: {
