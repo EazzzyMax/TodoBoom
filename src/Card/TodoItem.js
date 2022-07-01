@@ -1,20 +1,23 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import TodoCheckBox from './TodoCheckBox';
 import GlobalStyle from '../utils/GlobalStyle';
-import { TodoContextModal }  from './TodoContextModal';
+import { TodoContextModal } from './TodoContextModal';
 import { useState } from 'react';
 
 export default function TodoItem({ todo }) {
   const [contextVisibility, setContextVisibility] = useState(false);
-
   return (
     <View>
       <TodoContextModal isVisible={contextVisibility} todo={todo} closeModal={() => setContextVisibility(false)} />
       <TouchableOpacity onPress={() => setContextVisibility(true)} style={s.content}>
         <TodoCheckBox />
         <View style={s.textContent}>
-          <Text style={[GlobalStyle.Raleway500Font, s.title]}>{todo.title}</Text>
-          {!!todo.desc && <Text style={[GlobalStyle.Raleway400Font, s.desc]}>{todo.desc}</Text>}
+          <View style={s.titleWrapper}>
+            <Text style={[GlobalStyle.Raleway500Font, s.title, !!todo.completed && { color: '#888' }]}>
+              {todo.title}
+            </Text>
+          </View>
+          {!!(todo.desc && !todo.completed) && <Text style={[GlobalStyle.Raleway400Font, s.desc]}>{todo.desc}</Text>}
         </View>
       </TouchableOpacity>
       <View style={s.line} />
@@ -29,9 +32,14 @@ const s = StyleSheet.create({
   textContent: {
     flexShrink: 1,
   },
+  titleWrapper: {
+    justifyContent: 'center',
+    minHeight: 26,
+  },
   title: {
     fontSize: 18,
-    lineHeight: 23,
+    // backgroundColor: 'red',
+    textAlignVertical: 'center',
     color: '#fff',
   },
   desc: {
@@ -44,5 +52,8 @@ const s = StyleSheet.create({
     width: '100%',
     height: 1,
     backgroundColor: '#383838',
+  },
+  completed: {
+    opacity: 0.4,
   },
 });

@@ -12,6 +12,7 @@ export default function CardList() {
         decelerationRate={0.78}
         disableIntervalMomentum={true}
         showsHorizontalScrollIndicator={false}
+        endFillColor='rgba(35,35,35,0.2)'
         contentContainerStyle={s.ccStyle}
       >
         <Card />

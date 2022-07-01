@@ -1,7 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { toggleTodoComplete } from '../redux/todoSlice';
 
 export default function TodoCheckBox() {
-  return <View style={s.checkbox} />;
+  const dispatch = useDispatch();
+  // const toggleState = dispatch(toggleTodoComplete)
+
+  return (
+    <TouchableOpacity>
+      <View style={s.checkbox} />
+    </TouchableOpacity>
+  );
 }
 
 const s = StyleSheet.create({
@@ -11,6 +20,6 @@ const s = StyleSheet.create({
     height: 25,
     borderRadius: 12.5,
     borderColor: '#888',
-    borderWidth: 1,
+    borderWidth: 2,
   },
 });
