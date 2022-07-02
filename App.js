@@ -24,10 +24,8 @@ export default function App() {
   return (
     <Provider store={store}>
       <View style={s.container}>
-        {/* <SafeAreaView style={s.safeArea}> */}
           <StatusBar hidden={false} translucent={true} backgroundColor='rgba(17, 17, 17, 0.5)' />
-          <Main/>
-        {/* </SafeAreaView> */}
+          <TextPage/>
       </View>
     </Provider>
   );

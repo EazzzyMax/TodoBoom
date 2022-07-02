@@ -19,7 +19,8 @@ const todoSlice = createSlice({
     },
     toggleTodoComplete(state, action) {
       state.todos = state.todos.map((todo) => {
-        if (todo.id === action.todo.id) todo.completed = !todo.completed;
+        if (todo.id === action.payload.id) todo.completed = !todo.completed;
+        return todo;
       });
     },
   },

@@ -1,13 +1,9 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { toggleTodoComplete } from '../redux/todoSlice';
 
-export default function TodoCheckBox() {
-  const dispatch = useDispatch();
-  // const toggleState = dispatch(toggleTodoComplete)
+export default function TodoCheckBox({ onPress }) {
 
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <View style={s.checkbox} />
     </TouchableOpacity>
   );

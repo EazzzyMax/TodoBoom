@@ -1,6 +1,5 @@
 import { SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
-import Card from '../Card/Card';
-import CardList from '../CardList';
+import CardList from '../CardList/CardList';
 import Navbar from '../Navbar/Navbar';
 
 export default function Main() {

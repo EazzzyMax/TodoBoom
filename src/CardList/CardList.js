@@ -1,9 +1,10 @@
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
-import { ScrollView } from 'react-native';
-import Card from './Card/Card';
+import { ScrollView, Dimensions, StyleSheet, Text, View } from 'react-native';
+import Card from '../Card/Card';
 
 export default function CardList() {
   const width = Dimensions.get('window').width - 30;
+
+
   return (
     <View style={s.contanier}>
       <ScrollView

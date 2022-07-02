@@ -3,14 +3,22 @@ import TodoCheckBox from './TodoCheckBox';
 import GlobalStyle from '../utils/GlobalStyle';
 import { TodoContextModal } from './TodoContextModal';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { toggleTodoComplete } from '../redux/todoSlice';
 
 export default function TodoItem({ todo }) {
   const [contextVisibility, setContextVisibility] = useState(false);
+
+  const dispatch = useDispatch();
+  const toggleState = () => dispatch(toggleTodoComplete({ id: todo.id }));
+
   return (
     <View>
       <TodoContextModal isVisible={contextVisibility} todo={todo} closeModal={() => setContextVisibility(false)} />
       <TouchableOpacity onPress={() => setContextVisibility(true)} style={s.content}>
-        <TodoCheckBox />
+        <TodoCheckBox
+        onPress={toggleState}
+        />
         <View style={s.textContent}>
           <View style={s.titleWrapper}>
             <Text style={[GlobalStyle.Raleway500Font, s.title, !!todo.completed && { color: '#888' }]}>
