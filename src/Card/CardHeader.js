@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native'
 
-export default function CardHeader() {
+export default function CardHeader({categoryName}) {
   return (
     <View style={s.container}>
-      <Text style={s.name}>Category name</Text>
+      <Text style={s.name}>{categoryName}</Text>
     </View>
   )
 }

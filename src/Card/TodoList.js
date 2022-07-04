@@ -1,21 +1,28 @@
 import { FlatList, StyleSheet, View } from 'react-native';
 import TodoItem from './TodoItem';
-import { useSelector } from 'react-redux';
+import { EmptyTodoList } from "./EmptyTodoList";
 
-export default function TodoList() {
-  const todos = useSelector((state) => state.todos.todos);
+export default function TodoList({ todos }) {
   const renderItem = ({ item }) => <TodoItem todo={item} />;
-
-  return (
-    <View style={s.container}>
-      <FlatList
-        contentContainerStyle={s.ccStyle}
-        data={todos}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
-    </View>
+  const lineSeparator = () => (
+    <View style={{ marginVertical: 10, width: '100%', height: 1, backgroundColor: '#383838' }} />
   );
+
+  if (todos.length > 0) {
+    return (
+      <View style={s.container}>
+        <FlatList
+          contentContainerStyle={s.ccStyle}
+          data={todos}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          ItemSeparatorComponent={lineSeparator}
+        />
+      </View>
+    );
+  } else {
+    return <EmptyTodoList></EmptyTodoList>;
+  }
 }
 
 const s = StyleSheet.create({
@@ -24,5 +31,6 @@ const s = StyleSheet.create({
   },
   container: {
     flex: 1,
+    
   },
 });

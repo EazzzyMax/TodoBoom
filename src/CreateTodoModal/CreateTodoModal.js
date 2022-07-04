@@ -1,20 +1,21 @@
-import { KeyboardAvoidingView, StyleSheet,  View } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
 import CreateTodoInput from './CreateTodoInput';
 import Modal from 'react-native-modal';
 import { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { CreateIcon } from './Icons/CreateIcon';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addTodo } from '../redux/todoSlice';
 
-export default function CreateTodoModal({isVisible, closeModal}) {
+export default function CreateTodoModal({ isVisible, closeModal }) {
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
-  
+
+  const currentCardId = useSelector((state) => state.cards.currentCardId);
   const dispatch = useDispatch();
   const createNewTodo = () => {
     if (title.trim().length) {
-      dispatch(addTodo({ title: title.trim(), desc: desc.trim() }));
+      dispatch(addTodo({ cardId: currentCardId, title: title.trim(), desc: desc.trim() }));
       setTitle('');
       setDesc('');
       closeModal();

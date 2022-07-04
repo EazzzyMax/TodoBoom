@@ -1,8 +1,10 @@
 import { SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
-import CardList from '../CardList/CardList';
+import { useState } from 'react';
+import CardList from '../Card/CardList';
 import Navbar from '../Navbar/Navbar';
 
 export default function Main() {
+
   return (
     <SafeAreaView style={s.safeArea}>
       <View style={s.container}>
@@ -21,5 +23,5 @@ const s = StyleSheet.create({
   container: {
     backgroundColor: '#111',
     flex: 1,
-  }
+  },
 });
