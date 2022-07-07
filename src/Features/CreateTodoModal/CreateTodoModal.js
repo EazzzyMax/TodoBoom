@@ -3,9 +3,9 @@ import CreateTodoInput from './CreateTodoInput';
 import Modal from 'react-native-modal';
 import { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { CreateIcon } from './Icons/CreateIcon';
+import { CreateIcon } from './CreateIcon';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTodo } from '../redux/todoSlice';
+import { addTodo } from '../../redux/todoSlice';
 
 export default function CreateTodoModal({ isVisible, closeModal }) {
   const [title, setTitle] = useState('');
@@ -34,7 +34,7 @@ export default function CreateTodoModal({ isVisible, closeModal }) {
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <View style={s.innerModal}>
           <CreateTodoInput autoFocus={true} value={title} onChangeText={setTitle} placeholder='Title' />
-          <CreateTodoInput autoFocus={false} value={desc} onChangeText={setDesc} placeholder='Description' />
+          <CreateTodoInput value={desc} onChangeText={setDesc} placeholder='Description' />
           <TouchableOpacity onPress={createNewTodo} style={s.addBtn}>
             <CreateIcon />
           </TouchableOpacity>

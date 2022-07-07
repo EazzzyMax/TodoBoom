@@ -1,19 +1,20 @@
 import { useRef } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default function CreateTodoInput({ autoFocus,  value, onChangeText, placeholder }) {
+export default function CreateTodoInput({ autoFocus, ...props }) {
   const inputRef = useRef();
 
   return (
     <TextInput
-      autoFocus={autoFocus}
-      value={value}
-      onChangeText={(text) => onChangeText(text)}
+      ref={inputRef}
+      onLayout={() => {
+        if (autoFocus) setTimeout(() => inputRef.current.focus(), 100);
+      }}
       keyboardAppearance='dark'
       multiline={true}
       placeholderTextColor='#aaa'
       style={s.input}
-      placeholder={placeholder}
+      {...props}
     />
   );
 }
@@ -34,9 +35,3 @@ const s = StyleSheet.create({
     flexShrink: 1,
   },
 });
-
-//autofocus?
-      // ref={inputRef}
-      // onLayout={() => {
-      //   if (autoFocus) setTimeout(() => inputRef.current.focus(), 100);
-      // }}

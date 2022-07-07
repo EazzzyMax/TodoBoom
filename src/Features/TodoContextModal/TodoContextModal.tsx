@@ -1,13 +1,23 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Modal from 'react-native-modal';
-import GlobalStyle from '../utils/GlobalStyle';
+import GlobalStyle from '../../utils/GlobalStyle';
 
 import { useDispatch } from 'react-redux';
-import { removeTodo } from '../redux/todoSlice';
+import { removeTodo } from '../../redux/todoSlice';
+import { ITodo } from '../../types/types';
+import { FC } from 'react';
 
-export function TodoContextModal({ isVisible, todo, closeModal }) {
+interface todoContextProps {
+  isVisible: boolean;
+  todo: ITodo;
+  closeModal: () => void;
+}
+
+const TodoContextModal: FC<todoContextProps> = ({ isVisible, todo, closeModal }) => {
   const dispatch = useDispatch();
   const handleDelete = () => {
+    console.log('try delete', todo.id);
+
     dispatch(removeTodo({ id: todo.id }));
     closeModal();
   };
@@ -37,7 +47,7 @@ export function TodoContextModal({ isVisible, todo, closeModal }) {
       </View>
     </Modal>
   );
-}
+};
 
 const s = StyleSheet.create({
   outerModal: {
@@ -69,7 +79,6 @@ const s = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 15,
     borderRadius: 15,
-    // alignSelf: 'flex-end',
   },
   title: {
     fontSize: 18,
@@ -80,6 +89,7 @@ const s = StyleSheet.create({
     marginTop: 5,
     color: '#aaa',
     fontSize: 16,
-    // textAlignVertical: 'center',
   },
 });
+
+export default TodoContextModal;

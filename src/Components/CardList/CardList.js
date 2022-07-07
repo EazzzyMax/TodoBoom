@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { ScrollView, Dimensions, StyleSheet, Text, View, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeCurrentCard } from '../redux/todoSlice';
-import Card from './Card';
+import { changeCurrentCard } from '../../redux/todoSlice';
+import Card from './Card/Card';
+
 
 export default function CardList() {
   const width = Dimensions.get('window').width - 30;

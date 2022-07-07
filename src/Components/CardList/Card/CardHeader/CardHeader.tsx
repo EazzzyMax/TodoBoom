@@ -1,12 +1,17 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { FC } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
-export default function CardHeader({categoryName}) {
+interface cardHeaderProps {
+  categoryName: string;
+}
+
+const CardHeader: FC<cardHeaderProps> = ({ categoryName }) => {
   return (
     <View style={s.container}>
       <Text style={s.name}>{categoryName}</Text>
     </View>
-  )
-}
+  );
+};
 
 const s = StyleSheet.create({
   container: {
@@ -14,13 +19,14 @@ const s = StyleSheet.create({
     height: 64,
     backgroundColor: '#333',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   name: {
     fontSize: 20,
     color: '#fff',
     paddingLeft: 20,
-    fontFamily:  'Montserrat_600SemiBold'
-  }
+    fontFamily: 'Montserrat_600SemiBold',
+  },
+});
 
-})
+export default CardHeader;

@@ -4,7 +4,7 @@ import { Raleway_400Regular, Raleway_500Medium } from '@expo-google-fonts/ralewa
 import { PTMono_400Regular } from '@expo-google-fonts/pt-mono';
 
 import AppLoading from 'expo-app-loading';
-import Main from './src/Pages/Main';
+import Main from './src/Screens/Main';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
 

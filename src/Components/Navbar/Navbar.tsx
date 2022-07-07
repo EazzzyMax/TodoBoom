@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import CreateTodoModal from '../CreateTodoModal/CreateTodoModal';
+import CreateTodoModal from '../../Features/CreateTodoModal/CreateTodoModal';
 import AddTodoBtn from './AddTodoBtn';
 
 export default function Navbar({}) {

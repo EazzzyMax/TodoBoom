@@ -1,8 +1,7 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { PlusIcon } from './PlusIcon';
 
-export default function AddTodoBtn({openModal}) {
-
+export default function AddTodoBtn({ openModal }) {
   return (
     <TouchableOpacity onPress={openModal}>
       <View style={s.button}>
@@ -11,13 +10,6 @@ export default function AddTodoBtn({openModal}) {
     </TouchableOpacity>
   );
 }
-
-
-
-
-
-
-
 
 const s = StyleSheet.create({
   button: {

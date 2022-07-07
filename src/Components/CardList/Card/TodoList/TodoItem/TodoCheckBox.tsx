@@ -1,7 +1,14 @@
+import { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-export default function TodoCheckBox({ toggleState, completed }) {
+interface checkboxProps {
+  toggleState: () => void;
+  completed: boolean;
+}
+
+const TodoCheckBox: FC<checkboxProps> = ({ toggleState, completed }) => {
+  //reanimated
   const dotScale = useSharedValue(+completed);
   const circleScale = useSharedValue(1);
   const circleColor = useSharedValue(completed ? '#50caff' : '#888');
@@ -17,33 +24,25 @@ export default function TodoCheckBox({ toggleState, completed }) {
   };
 
   const AnimatedStyleDot = useAnimatedStyle(() => {
-    return {
-      transform: [{ scale: dotScale.value }],
-    };
+    return { transform: [{ scale: dotScale.value }] };
   });
   const AnimateStyleCicrle = useAnimatedStyle(() => {
-    return {
-      transform: [{ scale: circleScale.value }],
-      borderColor: circleColor.value,
-    };
+    return { transform: [{ scale: circleScale.value }], borderColor: circleColor.value };
   });
 
-  const onPressIn = () => {
-    animateCheckboxOnPressIn();
-  };
   const onPressOut = () => {
     toggleState();
     animateCheckboxOnPressOut();
   };
 
   return (
-    <TouchableOpacity activeOpacity={1} onPressIn={onPressIn} onPressOut={onPressOut}>
+    <TouchableOpacity activeOpacity={1} onPressIn={animateCheckboxOnPressIn} onPressOut={onPressOut}>
       <Animated.View style={[AnimateStyleCicrle, s.checkbox]}>
         <Animated.View style={[AnimatedStyleDot, s.circle]} />
       </Animated.View>
     </TouchableOpacity>
   );
-}
+};
 
 const s = StyleSheet.create({
   checkbox: {
@@ -62,3 +61,5 @@ const s = StyleSheet.create({
     borderRadius: 11.5,
   },
 });
+
+export default TodoCheckBox;

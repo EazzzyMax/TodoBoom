@@ -1,8 +1,14 @@
 import { FlatList, StyleSheet, View } from 'react-native';
-import TodoItem from './TodoItem';
-import { EmptyTodoList } from "./EmptyTodoList";
+import TodoItem from './TodoItem/TodoItem';
+import { EmptyTodoList } from './EmptyTodoList';
+import { ITodo } from '../../../../types/types';
+import { FC } from 'react';
 
-export default function TodoList({ todos }) {
+interface todoListProps {
+  todos: ITodo[];
+}
+
+const TodoList: FC<todoListProps> = ({ todos }) => {
   const renderItem = ({ item }) => <TodoItem todo={item} />;
   const lineSeparator = () => (
     <View style={{ marginVertical: 10, width: '100%', height: 1, backgroundColor: '#383838' }} />
@@ -23,7 +29,7 @@ export default function TodoList({ todos }) {
   } else {
     return <EmptyTodoList></EmptyTodoList>;
   }
-}
+};
 
 const s = StyleSheet.create({
   ccStyle: {
@@ -31,6 +37,7 @@ const s = StyleSheet.create({
   },
   container: {
     flex: 1,
-    
   },
 });
+
+export default TodoList;

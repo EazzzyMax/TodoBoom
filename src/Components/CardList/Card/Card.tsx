@@ -1,7 +1,7 @@
 import { Dimensions, StyleSheet, View } from 'react-native';
 import { useSelector } from 'react-redux';
-import CardHeader from './CardHeader';
-import TodoList from './TodoList';
+import CardHeader from './CardHeader/CardHeader';
+import TodoList from './TodoList/TodoList';
 
 export default function Card(props) {
   return (

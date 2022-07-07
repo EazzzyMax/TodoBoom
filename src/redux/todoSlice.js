@@ -28,10 +28,7 @@ const cardsSlice = createSlice({
   },
   reducers: {
     addTodo(state, action) {
-      console.log(`addTodo VVV`);
-      console.log(action.payload.title);
-      console.log(action.payload.desc);
-      state.cards[action.payload.cardId].todos.push({
+      state.cards[state.currentCardId].todos.push({
         id: new Date().toISOString(),
         title: action.payload.title,
         desc: action.payload.desc,
@@ -39,10 +36,15 @@ const cardsSlice = createSlice({
       });
     },
     removeTodo(state, action) {
-      state.cards[action.payload.cardId].todos = state.todos.filter((todo) => todo.id !== action.payload.id);
+      console.log('reducer removeTodo:');
+      console.log(state.cards[state.currentCardId].todos);
+
+      state.cards[state.currentCardId].todos = state.cards[state.currentCardId].todos.filter(
+        (todo) => todo.id !== action.payload.id
+      );
     },
     toggleTodoComplete(state, action) {
-      state.cards[action.payload.cardId].todos = state.cards[action.payload.cardId].todos.map((todo) => {
+      state.cards[state.currentCardId].todos = state.cards[state.currentCardId].todos.map((todo) => {
         if (todo.id === action.payload.id) todo.completed = !todo.completed;
         return todo;
       });
