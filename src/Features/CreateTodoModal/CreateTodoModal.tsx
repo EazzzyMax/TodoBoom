@@ -1,21 +1,25 @@
-import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
 import CreateTodoInput from './CreateTodoInput';
 import Modal from 'react-native-modal';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { CreateIcon } from './CreateIcon';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addTodo } from '../../redux/todoSlice';
 
-export default function CreateTodoModal({ isVisible, closeModal }) {
-  const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
+interface createTodoProps {
+  isVisible: boolean;
+  closeModal: () => void;
+}
 
-  const currentCardId = useSelector((state) => state.cards.currentCardId);
+const CreateTodoModal: FC<createTodoProps> = ({ isVisible, closeModal }) => {
+  const [title, setTitle] = useState<string>('');
+  const [desc, setDesc] = useState<string>('');
+
   const dispatch = useDispatch();
   const createNewTodo = () => {
     if (title.trim().length) {
-      dispatch(addTodo({ cardId: currentCardId, title: title.trim(), desc: desc.trim() }));
+      dispatch(addTodo({ title: title.trim(), desc: desc.trim() }));
       setTitle('');
       setDesc('');
       closeModal();
@@ -34,7 +38,7 @@ export default function CreateTodoModal({ isVisible, closeModal }) {
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <View style={s.innerModal}>
           <CreateTodoInput autoFocus={true} value={title} onChangeText={setTitle} placeholder='Title' />
-          <CreateTodoInput value={desc} onChangeText={setDesc} placeholder='Description' />
+          <CreateTodoInput autoFocus={false} value={desc} onChangeText={setDesc} placeholder='Description' />
           <TouchableOpacity onPress={createNewTodo} style={s.addBtn}>
             <CreateIcon />
           </TouchableOpacity>
@@ -42,7 +46,7 @@ export default function CreateTodoModal({ isVisible, closeModal }) {
       </KeyboardAvoidingView>
     </Modal>
   );
-}
+};
 
 const s = StyleSheet.create({
   outerModal: {
@@ -61,3 +65,5 @@ const s = StyleSheet.create({
     alignSelf: 'flex-end',
   },
 });
+
+export default CreateTodoModal;

@@ -16,8 +16,8 @@ const cardsSlice = createSlice({
       {
         cardName: 'Second card!',
         todos: [
-          { id: 0, title: 'Wellcome to Second Card!', desc: 'Press on me to see more', completed: false },
-          { id: 1, title: 'Copmleted Todo', desc: 'Joke!', completed: true },
+          { id: 3, title: 'Wellcome to Second Card!', desc: 'Press on me to see more', completed: false },
+          { id: 4, title: 'Copmleted Todo', desc: 'Joke!', completed: true },
         ],
       },
       {
@@ -36,9 +36,6 @@ const cardsSlice = createSlice({
       });
     },
     removeTodo(state, action) {
-      console.log('reducer removeTodo:');
-      console.log(state.cards[state.currentCardId].todos);
-
       state.cards[state.currentCardId].todos = state.cards[state.currentCardId].todos.filter(
         (todo) => todo.id !== action.payload.id
       );

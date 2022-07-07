@@ -7,6 +7,7 @@ import AppLoading from 'expo-app-loading';
 import Main from './src/Screens/Main';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
+import TextPage from './src/Screens/TextPage';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -23,8 +24,8 @@ export default function App() {
   return (
     <Provider store={store}>
       <View style={s.container}>
-          <StatusBar hidden={false} translucent={true} backgroundColor='rgba(17, 17, 17, 0.5)' />
-          <Main/>
+        <StatusBar hidden={false} translucent={true} backgroundColor='rgba(17, 17, 17, 0.5)' />
+        <Main />
       </View>
     </Provider>
   );

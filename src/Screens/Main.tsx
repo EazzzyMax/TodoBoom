@@ -4,11 +4,13 @@ import CardList from '../Components/CardList/CardList';
 import Navbar from '../Components/Navbar/Navbar';
 
 export default function Main() {
+  const [debugString, setDebugString] = useState('');
+
   return (
     <SafeAreaView style={s.safeArea}>
       <View style={s.container}>
-        <CardList />
-        <Navbar />
+        <CardList setDebugString={setDebugString} />
+        <Navbar debugString={debugString} />
       </View>
     </SafeAreaView>
   );

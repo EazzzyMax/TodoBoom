@@ -4,3 +4,8 @@ export interface ITodo {
   desc: string;
   completed: boolean;
 }
+
+export interface ICard {
+  cardName: string;
+  todos: ITodo[];
+}

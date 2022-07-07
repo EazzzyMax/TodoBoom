@@ -1,19 +1,28 @@
 import { useState } from 'react';
-import { ScrollView, Dimensions, StyleSheet, Text, View, FlatList } from 'react-native';
+import {
+  ScrollView,
+  Dimensions,
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeCurrentCard } from '../../redux/todoSlice';
 import Card from './Card/Card';
 
-
-export default function CardList() {
+export default function CardList({ setDebugString }) {
   const width = Dimensions.get('window').width - 30;
   const dispatch = useDispatch();
 
-  function onScrollEnd(e) {
+  function onScrollEnd(e: NativeSyntheticEvent<NativeScrollEvent>) {
     let contentOffset = e.nativeEvent.contentOffset;
     let pageNum = Math.floor(contentOffset.x / width);
     console.log('scrolled to card -', pageNum);
     dispatch(changeCurrentCard({ cardId: pageNum }));
+    setDebugString(`${contentOffset.x} / ${width} = ${pageNum}`);
   }
   const [canmomentum, setCanMomentum] = useState(false);
 

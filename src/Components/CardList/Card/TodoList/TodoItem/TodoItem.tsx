@@ -24,7 +24,9 @@ const TodoItem: FC<todoItemProps> = ({ todo }) => {
         <TodoCheckBox toggleState={toggleState} completed={todo.completed} />
         <View style={styles.textContent}>
           <View style={styles.titleWrapper}>
-            <Text style={[styles.title, !!todo.completed && { color: '#888' }]}>{todo.title}</Text>
+            <Text style={[styles.title, !!todo.completed && { color: '#aaa', textDecorationLine: 'line-through' }]}>
+              {todo.title}
+            </Text>
           </View>
           {todo.desc.length > 0 && !todo.completed && <Text style={[styles.desc]}>{todo.desc}</Text>}
         </View>

@@ -1,23 +1,30 @@
+import { FC } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import { useSelector } from 'react-redux';
+import { ICard } from '../../../types/types';
 import CardHeader from './CardHeader/CardHeader';
 import TodoList from './TodoList/TodoList';
 
-export default function Card(props) {
-  return (
-    <View style={s.container}>
-      <CardHeader categoryName={props.card.cardName}/>
-      <TodoList todos={props.card.todos} />
-    </View>
-  );
+interface cardProps {
+  card: ICard;
 }
 
-const width = Dimensions.get('window').width-40;
+const Card: FC<cardProps> = ({ card }) => {
+  return (
+    <View style={s.container}>
+      <CardHeader categoryName={card.cardName} />
+      <TodoList todos={card.todos} />
+    </View>
+  );
+};
+
+const width = Dimensions.get('window').width - 40;
 const s = StyleSheet.create({
   container: {
-    width: width,
+    width,
     backgroundColor: '#222',
     borderRadius: 15,
     overflow: 'hidden',
   },
 });
+
+export default Card;

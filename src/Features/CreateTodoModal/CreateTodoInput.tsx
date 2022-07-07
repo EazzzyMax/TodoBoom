@@ -1,6 +1,15 @@
 import { useRef } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
+interface createTodoInputProps {
+  autoFocus: boolean;
+  onChangeText: () => void;
+  value: string;
+  autofocus: boolean;
+  placeholder: string;
+}
+
+//нехуя ни понял
 export default function CreateTodoInput({ autoFocus, ...props }) {
   const inputRef = useRef();
 
@@ -8,7 +17,7 @@ export default function CreateTodoInput({ autoFocus, ...props }) {
     <TextInput
       ref={inputRef}
       onLayout={() => {
-        if (autoFocus) setTimeout(() => inputRef.current.focus(), 100);
+        if (autoFocus) setTimeout(() => inputRef.current.focus(), 10);
       }}
       keyboardAppearance='dark'
       multiline={true}
