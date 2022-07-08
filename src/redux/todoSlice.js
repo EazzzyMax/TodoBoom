@@ -6,46 +6,31 @@ const cardsSlice = createSlice({
     currentCardId: 0,
     cards: [
       {
-        id: 101,
+        id: 100,
         cardName: 'React learning!',
         archived: false,
         todos: [
           { id: 0, title: 'Wellcome to TodoBom!', desc: 'Press on me to see more', completed: false },
           { id: 1, title: 'Copmleted Todo', desc: 'Joke!', completed: true },
           { id: 2, title: 'Todo', desc: '', completed: false },
-          { id: 3, title: 'Todo', desc: '', completed: false },
-          { id: 4, title: 'Todo', desc: '', completed: false },
-          // { id: 5, title: 'Todo', desc: '', completed: false },
-          // { id: 6, title: 'Todo', desc: '', completed: false },
-          // { id: 7, title: 'Todo', desc: '', completed: false },
-          // { id: 8, title: 'Todo', desc: '', completed: false },
-          // { id: 9, title: 'Todo', desc: '', completed: false },
-          // { id: 10, title: 'Todo', desc: '', completed: false },
-          // { id: 11, title: 'Todo', desc: '', completed: false },
-          // { id: 12, title: 'Todo', desc: '', completed: false },
-          // { id: 13, title: 'Todo', desc: '', completed: false },
-          // { id: 14, title: 'Todo', desc: '', completed: false },
-          // { id: 15, title: 'Todo', desc: '', completed: false },
-          // { id: 16, title: 'Todo', desc: '', completed: false },
-          // { id: 17, title: 'Todo', desc: '', completed: false },
-          // { id: 18, title: 'Todo', desc: '', completed: false },
-          // { id: 19, title: 'Todo', desc: '', completed: false },
+          // { id: 3, title: 'Todo', desc: '', completed: false },
+          // { id: 4, title: 'Todo', desc: '', completed: false },
+        ],
+      },
+      {
+        id: 101,
+        cardName: 'Second card!',
+        archived: false,
+        todos: [
+          { id: 5, title: 'Wellcome to Second Card!', desc: 'Press on me to see more', completed: true },
+          { id: 6, title: 'Copmleted Todo', desc: 'Joke!', completed: true },
         ],
       },
       {
         id: 102,
-        cardName: 'Second card!',
-        archived: false,
-        todos: [
-          { id: 3, title: 'Wellcome to Second Card!', desc: 'Press on me to see more', completed: true },
-          { id: 4, title: 'Copmleted Todo', desc: 'Joke!', completed: true },
-        ],
-      },
-      {
-        id: 103,
         cardName: 'Third card!',
         archived: false,
-        todos: [],
+        todos: [{ id: 7, title: 'Fuck Todo', desc: 'Fuck!', completed: true }],
       },
     ],
   },
@@ -70,12 +55,12 @@ const cardsSlice = createSlice({
       });
     },
     changeCurrentCard(state, action) {
-      console.log(action.payload.cardId);
+      console.log('card ID', action.payload.cardId);
       let id = 0;
       state.cards.forEach((element, index) => {
         if (element.id === action.payload.cardId) id = index;
       });
-      console.log(id);
+      console.log('card index in cards', id);
       state.currentCardId = id;
     },
     archiveCurrentCard(state) {

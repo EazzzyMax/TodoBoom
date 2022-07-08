@@ -3,13 +3,13 @@ import TodoItem from './TodoItem/TodoItem';
 import { EmptyTodoList } from './EmptyTodoList/EmptyTodoList';
 import { ITodo } from '../../../../types/types';
 import { FC } from 'react';
-import { checkIfEverythingDone } from '../../../../utils/checkIfEverythingDone';
+import { checkIfEveryTodoDone } from '../../../../utils/checkIfEverythingDone';
 
 interface todoListProps {
   todos: ITodo[];
 }
 
-const TodoList: FC<todoListProps> = ({ todos }) => {
+const TodoList: FC<todoListProps> = ({ todos, changeCurrentCardId }) => {
   const renderItem = ({ item }) => <TodoItem todo={item} />;
   const LineSeparator = () => (
     <View style={{ marginVertical: 10, width: '100%', height: 1, backgroundColor: '#383838' }} />
@@ -17,8 +17,8 @@ const TodoList: FC<todoListProps> = ({ todos }) => {
 
   return (
     <View style={s.container}>
-      {checkIfEverythingDone(todos) ? (
-        <EmptyTodoList />
+      {checkIfEveryTodoDone(todos) ? (
+        <EmptyTodoList changeCurrentCardId={changeCurrentCardId} />
       ) : (
         <FlatList
           contentContainerStyle={s.ccStyle}

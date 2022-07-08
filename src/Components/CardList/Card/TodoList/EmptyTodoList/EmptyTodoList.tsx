@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, Text, View, Image } from 'react-native';
+import { Dimensions, StyleSheet, Text, View, Image, LayoutAnimation } from 'react-native';
 import React from 'react';
 import GlobalStyle from '../../../../../utils/GlobalStyle';
 import Button from '../../../../Button/Button';
@@ -7,10 +7,26 @@ import { archiveCurrentCard } from '../../../../../redux/todoSlice';
 
 let width = Dimensions.get('window').width - 60;
 
-export function EmptyTodoList() {
+export function EmptyTodoList({ changeCurrentCardId }) {
+  const layoutAnimConfig = {
+    duration: 300,
+    update: {
+      type: LayoutAnimation.Types.easeInEaseOut,
+    },
+    delete: {
+      duration: 100,
+      type: LayoutAnimation.Types.easeInEaseOut,
+      property: LayoutAnimation.Properties.opacity,
+    },
+  };
+
   const dispatch = useDispatch();
 
-  const archiveCard = () => dispatch(archiveCurrentCard());
+  const archiveCard = () => {
+    dispatch(archiveCurrentCard());
+    LayoutAnimation.configureNext(layoutAnimConfig);
+    changeCurrentCardId();
+  };
 
   return (
     <View style={styles.container}>

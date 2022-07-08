@@ -8,11 +8,11 @@ interface cardProps {
   card: ICard;
 }
 
-const Card: FC<cardProps> = ({ card }) => {
+const Card: FC<cardProps> = ({ card, changeCurrentCardId }) => {
   return (
     <View style={s.container}>
       <CardHeader categoryName={card.cardName} />
-      <TodoList todos={card.todos} />
+      <TodoList changeCurrentCardId={changeCurrentCardId} todos={card.todos} />
     </View>
   );
 };

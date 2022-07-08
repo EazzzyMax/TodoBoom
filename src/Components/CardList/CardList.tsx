@@ -16,27 +16,40 @@ import Card from './Card/Card';
 export default function CardList() {
   const dispatch = useDispatch();
 
-  const width = Dimensions.get('window').width - 30;
-  const [canmomentum, setCanMomentum] = useState(false);
-  function onScrollEnd(e: NativeSyntheticEvent<NativeScrollEvent>) {
-    let contentOffset = e.nativeEvent.contentOffset;
-    let pageNum = Math.round(contentOffset.x / width);
-    console.log('scrolled to card -', pageNum);
-    dispatch(changeCurrentCard({ cardId: data[pageNum].id }));
-  }
-
+  //all cards
   const cards = useSelector((state) => state.cards.cards);
+  // non-archived cards
   const data = cards.filter((item) => {
     return !item.archived;
   });
-  const renderItem = ({ item }) => <Card card={item} />;
-  const cardSeparator = () => <View style={{ width: 10 }} />;
+  const renderItem = ({ item }) => (
+    <Card changeCurrentCardId={() => changeCurrentCardId(currentPage + 1)} card={item} />
+  );
+
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const widthOfScroll = Dimensions.get('window').width - 30;
+  const [canmomentum, setCanMomentum] = useState(false);
+
+  const changeCurrentCardId = (pageNum) => {
+    console.log('cCCI', pageNum);
+    dispatch(changeCurrentCard({ cardId: data[pageNum].id }));
+  };
+
+  function onScrollEnd(e: NativeSyntheticEvent<NativeScrollEvent>) {
+    let contentOffsetX = e.nativeEvent.contentOffset.x;
+    let pageNum = Math.round(contentOffsetX / widthOfScroll);
+    setCurrentPage(pageNum);
+    console.log('-----------------------');
+    console.log('scrolled to page/card -', pageNum);
+    changeCurrentCardId(pageNum);
+  }
 
   return (
     <View style={s.contanier}>
       <FlatList
         horizontal={true}
-        snapToInterval={width}
+        snapToInterval={widthOfScroll}
         decelerationRate={0.78}
         disableIntervalMomentum={true}
         showsHorizontalScrollIndicator={false}
@@ -48,7 +61,7 @@ export default function CardList() {
           if (canmomentum) onScrollEnd(e);
           setCanMomentum(false);
         }}
-        ItemSeparatorComponent={cardSeparator}
+        ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
       />
     </View>
   );
