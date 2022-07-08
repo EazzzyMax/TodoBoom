@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ScrollView,
   Dimensions,
@@ -13,20 +13,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeCurrentCard } from '../../redux/todoSlice';
 import Card from './Card/Card';
 
-export default function CardList({ setDebugString }) {
-  const width = Dimensions.get('window').width - 30;
+export default function CardList() {
   const dispatch = useDispatch();
 
+  const width = Dimensions.get('window').width - 30;
+  const [canmomentum, setCanMomentum] = useState(false);
   function onScrollEnd(e: NativeSyntheticEvent<NativeScrollEvent>) {
     let contentOffset = e.nativeEvent.contentOffset;
-    let pageNum = Math.floor(contentOffset.x / width);
+    let pageNum = Math.round(contentOffset.x / width);
     console.log('scrolled to card -', pageNum);
-    dispatch(changeCurrentCard({ cardId: pageNum }));
-    setDebugString(`${contentOffset.x} / ${width} = ${pageNum}`);
+    dispatch(changeCurrentCard({ cardId: data[pageNum].id }));
   }
-  const [canmomentum, setCanMomentum] = useState(false);
 
-  const cards = useSelector((state) => state.cards.cards); //DATA
+  const cards = useSelector((state) => state.cards.cards);
+  const data = cards.filter((item) => {
+    return !item.archived;
+  });
   const renderItem = ({ item }) => <Card card={item} />;
   const cardSeparator = () => <View style={{ width: 10 }} />;
 
@@ -39,7 +41,7 @@ export default function CardList({ setDebugString }) {
         disableIntervalMomentum={true}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={s.ccStyle}
-        data={cards}
+        data={data}
         renderItem={renderItem}
         onScroll={() => setCanMomentum(true)}
         onMomentumScrollEnd={(e) => {

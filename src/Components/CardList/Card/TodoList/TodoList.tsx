@@ -3,6 +3,7 @@ import TodoItem from './TodoItem/TodoItem';
 import { EmptyTodoList } from './EmptyTodoList/EmptyTodoList';
 import { ITodo } from '../../../../types/types';
 import { FC } from 'react';
+import { checkIfEverythingDone } from '../../../../utils/checkIfEverythingDone';
 
 interface todoListProps {
   todos: ITodo[];
@@ -16,14 +17,17 @@ const TodoList: FC<todoListProps> = ({ todos }) => {
 
   return (
     <View style={s.container}>
-      <FlatList
-        contentContainerStyle={s.ccStyle}
-        data={todos}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        ItemSeparatorComponent={LineSeparator}
-        ListEmptyComponent={<EmptyTodoList />}
-      />
+      {checkIfEverythingDone(todos) ? (
+        <EmptyTodoList />
+      ) : (
+        <FlatList
+          contentContainerStyle={s.ccStyle}
+          data={todos}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          ItemSeparatorComponent={LineSeparator}
+        />
+      )}
     </View>
   );
 };
@@ -31,7 +35,7 @@ const TodoList: FC<todoListProps> = ({ todos }) => {
 const s = StyleSheet.create({
   ccStyle: {
     padding: 15,
-    flex: 1,
+    flexGrow: 1,
   },
   container: {
     flex: 1,

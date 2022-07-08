@@ -10,9 +10,6 @@ export default function Navbar({ debugString }) {
   const width = Dimensions.get('window').width;
   return (
     <View style={s.nav}>
-      <Text style={{ color: 'white' }}>
-        width={width} currentCard={currentCard} ||| {debugString}
-      </Text>
       <CreateTodoModal isVisible={createVisibility} closeModal={() => setCreateVisibility(false)} />
       <AddTodoBtn openModal={() => setCreateVisibility(true)} />
     </View>
@@ -21,8 +18,8 @@ export default function Navbar({ debugString }) {
 
 const s = StyleSheet.create({
   nav: {
-    // height: 56,
-    height: 70,
+    height: 56,
+    // height: 70,
     backgroundColor: '#222',
     // flexDirection: 'row',
     justifyContent: 'space-around',

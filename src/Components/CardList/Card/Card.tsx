@@ -22,7 +22,7 @@ const s = StyleSheet.create({
   container: {
     width,
     backgroundColor: '#222',
-    borderRadius: 15,
+    borderRadius: 25,
     overflow: 'hidden',
   },
 });

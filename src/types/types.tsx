@@ -6,6 +6,8 @@ export interface ITodo {
 }
 
 export interface ICard {
+  id: number;
+  archived: boolean;
   cardName: string;
   todos: ITodo[];
 }
