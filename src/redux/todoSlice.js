@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const cardsSlice = createSlice({
   name: 'cards',
   initialState: {
-    currentCardId: 0,
+    currentCardIndex: 0,
     cards: [
       {
         id: 100,
@@ -36,7 +36,7 @@ const cardsSlice = createSlice({
   },
   reducers: {
     addTodo(state, action) {
-      state.cards[state.currentCardId].todos.push({
+      state.cards[state.currentCardIndex].todos.push({
         id: new Date().toISOString(),
         title: action.payload.title,
         desc: action.payload.desc,
@@ -44,12 +44,12 @@ const cardsSlice = createSlice({
       });
     },
     removeTodo(state, action) {
-      state.cards[state.currentCardId].todos = state.cards[state.currentCardId].todos.filter(
+      state.cards[state.currentCardIndex].todos = state.cards[state.currentCardIndex].todos.filter(
         (todo) => todo.id !== action.payload.id
       );
     },
     toggleTodoComplete(state, action) {
-      state.cards[state.currentCardId].todos = state.cards[state.currentCardId].todos.map((todo) => {
+      state.cards[state.currentCardIndex].todos = state.cards[state.currentCardIndex].todos.map((todo) => {
         if (todo.id === action.payload.id) todo.completed = !todo.completed;
         return todo;
       });
@@ -62,14 +62,23 @@ const cardsSlice = createSlice({
         if (element.id === action.payload.cardId) id = index;
       });
       console.log('card index in cards', id);
-      state.currentCardId = id;
+      state.currentCardIndex = id;
     },
     archiveCurrentCard(state) {
-      state.cards[state.currentCardId].archived = true;
+      state.cards[state.currentCardIndex].archived = true;
+    },
+    addCategory(state) {
+      state.cards.unshift({
+        id: new Date().toISOString(),
+        cardName: 'New category',
+        todos: [],
+      });
+      state.currentCardIndex = 0;
     },
   },
 });
 
 export default cardsSlice.reducer;
 
-export const { archiveCurrentCard, addTodo, removeTodo, toggleTodoComplete, changeCurrentCard } = cardsSlice.actions;
+export const { addCategory, archiveCurrentCard, addTodo, removeTodo, toggleTodoComplete, changeCurrentCard } =
+  cardsSlice.actions;

@@ -87,6 +87,7 @@ const s = StyleSheet.create({
     flex: 1,
   },
   ccStyle: {
+    minWidth: Dimensions.get('window').width,
     paddingHorizontal: 20,
     paddingVertical: 10,
   },

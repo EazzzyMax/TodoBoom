@@ -1,6 +1,9 @@
 import { FC } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { colors, Colors } from '../../StylesConstants/Colors';
+import { LayoutAnimation, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { addCategory } from '../../redux/todoSlice';
+import { colors } from '../../StylesConstants/Colors';
+import { layoutDeleteAnimConfig } from '../../utils/LayoutAnimation';
 import { PlusIcon } from './PlusIcon';
 
 interface addTodoBtnProps {
@@ -8,8 +11,15 @@ interface addTodoBtnProps {
 }
 
 const AddTodoBtn: FC<addTodoBtnProps> = ({ openModal }) => {
+  const dispatch = useDispatch();
+  const createNewCategory = () => {
+    console.log('try to add category');
+    dispatch(addCategory());
+    LayoutAnimation.configureNext(layoutDeleteAnimConfig);
+  };
+
   return (
-    <TouchableOpacity onPress={openModal}>
+    <TouchableOpacity onLongPress={createNewCategory} onPress={openModal}>
       <View style={s.button}>
         <PlusIcon />
       </View>
