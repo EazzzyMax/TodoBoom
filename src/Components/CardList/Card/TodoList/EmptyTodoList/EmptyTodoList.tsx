@@ -30,10 +30,8 @@ export function EmptyTodoList({ changeCurrentCardId }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.upperBlock}>
-        <Text style={styles.text}>All done!</Text>
-        <Image style={styles.image} source={require('../../../../../../assets/img/EmpyCardPic.png')} />
-      </View>
+      <Text style={styles.text}>All done!</Text>
+      <Image style={styles.image} source={require('../../../../../../assets/img/EmpyCardPic.png')} />
       <Button onPress={archiveCard} text='Archive card' />
     </View>
   );
@@ -43,24 +41,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
-    padding: 10,
-  },
-  upperBlock: {
     alignItems: 'center',
+    padding: 10,
   },
   text: {
     color: '#fff',
     fontSize: 32,
     ...GlobalStyle.Montserrat600Font,
     marginTop: 20,
-    marginBottom: 30,
   },
   image: {
     width,
     height: (width / 24) * 25,
-  },
-  picContainer: {
-    width,
-    backgroundColor: 'lightgray',
+    marginBottom: 20,
   },
 });

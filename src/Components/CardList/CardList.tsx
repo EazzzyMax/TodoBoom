@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   ScrollView,
   Dimensions,
@@ -27,6 +27,8 @@ export default function CardList() {
   );
 
   const [currentPage, setCurrentPage] = useState(0);
+  const pageRef = useRef(0);
+
 
   const widthOfScroll = Dimensions.get('window').width - 30;
   const [canmomentum, setCanMomentum] = useState(false);
