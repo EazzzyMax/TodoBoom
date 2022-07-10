@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { colors, Colors } from '../../StylesConstants/Colors';
 import { PlusIcon } from './PlusIcon';
 
 interface addTodoBtnProps {
@@ -20,7 +21,7 @@ const s = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'space-around',
-    backgroundColor: '#50CAFF',
+    backgroundColor: colors.buttonActive,
     width: 80,
     height: 46,
     borderRadius: 15,

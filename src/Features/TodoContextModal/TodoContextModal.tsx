@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { LayoutAnimation, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Modal from 'react-native-modal';
 import GlobalStyle from '../../utils/GlobalStyle';
 
@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { removeTodo } from '../../redux/todoSlice';
 import { ITodo } from '../../types/types';
 import { FC } from 'react';
+import { layoutDeleteAnimConfig } from '../../utils/LayoutAnimation';
 
 interface todoContextProps {
   isVisible: boolean;
@@ -16,10 +17,10 @@ interface todoContextProps {
 const TodoContextModal: FC<todoContextProps> = ({ isVisible, todo, closeModal }) => {
   const dispatch = useDispatch();
   const handleDelete = () => {
-    console.log('try delete', todo.id);
-
+    console.log('delete', todo.id);
     dispatch(removeTodo({ id: todo.id }));
     closeModal();
+    LayoutAnimation.configureNext(layoutDeleteAnimConfig);
   };
 
   return (

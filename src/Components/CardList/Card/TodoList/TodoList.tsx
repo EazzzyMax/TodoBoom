@@ -7,9 +7,10 @@ import { checkIfEveryTodoDone } from '../../../../utils/checkIfEverythingDone';
 
 interface todoListProps {
   todos: ITodo[];
+  archiveCard: () => void;
 }
 
-const TodoList: FC<todoListProps> = ({ todos, changeCurrentCardId }) => {
+const TodoList: FC<todoListProps> = ({ archiveCard, todos }) => {
   const renderItem = ({ item }) => <TodoItem todo={item} />;
   const LineSeparator = () => (
     <View style={{ marginVertical: 10, width: '100%', height: 1, backgroundColor: '#383838' }} />
@@ -18,7 +19,7 @@ const TodoList: FC<todoListProps> = ({ todos, changeCurrentCardId }) => {
   return (
     <View style={s.container}>
       {checkIfEveryTodoDone(todos) ? (
-        <EmptyTodoList changeCurrentCardId={changeCurrentCardId} />
+        <EmptyTodoList archiveCard={archiveCard} />
       ) : (
         <FlatList
           contentContainerStyle={s.ccStyle}

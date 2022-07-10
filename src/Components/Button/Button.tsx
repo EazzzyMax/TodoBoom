@@ -1,11 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { FC } from 'react';
 import GlobalStyle from '../../utils/GlobalStyle';
+import { colors, Colors } from '../../StylesConstants/Colors';
 
 interface buttonProps {
   state?: string;
   text: string;
-  onPress: () => void;
+  onPress?: () => void;
 }
 
 const Button: FC<buttonProps> = ({ text, onPress }) => {
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     paddingVertical: 12,
-    backgroundColor: '#50caff',
+    backgroundColor: colors.buttonActive,
     alignItems: 'center',
     justifyContent: 'space-around',
     borderRadius: 15,

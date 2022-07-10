@@ -11,6 +11,9 @@ export default StyleSheet.create({
     fontFamily: `Montserrat_600SemiBold`,
   },
   PTMono: {
-    fontFamily: 'PTMono_400Regular'
-  }
+    fontFamily: 'PTMono_400Regular',
+  },
+  mainColor: {
+    backgroundColor: '#50caff',
+  },
 });

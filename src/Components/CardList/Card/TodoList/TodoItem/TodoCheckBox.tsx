@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import { colors } from '../../../../../StylesConstants/Colors';
 
 interface checkboxProps {
   toggleState: () => void;
@@ -11,16 +12,16 @@ const TodoCheckBox: FC<checkboxProps> = ({ toggleState, completed }) => {
   //reanimated
   const dotScale = useSharedValue(+completed);
   const circleScale = useSharedValue(1);
-  const circleColor = useSharedValue(completed ? '#50caff' : '#888');
+  const circleColor = useSharedValue(completed ? colors.checkBox0 : '#888');
 
   const animateCheckboxOnPressIn = () => {
     circleScale.value = withTiming(0.9, { duration: 100, easing: Easing.out(Easing.exp) });
   };
 
   const animateCheckboxOnPressOut = () => {
-    dotScale.value = withTiming(Math.abs(dotScale.value - 1), { duration: 100, easing: Easing.out(Easing.exp) });
-    circleScale.value = withTiming(1, { duration: 100, easing: Easing.out(Easing.exp) });
-    dotScale.value === 0 ? (circleColor.value = '#50caff') : (circleColor.value = '#888');
+    dotScale.value = withTiming(Math.abs(dotScale.value - 1), { duration: 250, easing: Easing.out(Easing.exp) });
+    circleScale.value = withTiming(1, { duration: 150, easing: Easing.out(Easing.exp) });
+    dotScale.value === 0 ? (circleColor.value = colors.checkBox0) : (circleColor.value = '#888');
   };
 
   const AnimatedStyleDot = useAnimatedStyle(() => {
@@ -57,7 +58,7 @@ const s = StyleSheet.create({
   circle: {
     width: 17,
     height: 17,
-    backgroundColor: '#50caff',
+    backgroundColor: colors.checkBox0,
     borderRadius: 11.5,
   },
 });

@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { colors } from '../../../../StylesConstants/Colors';
 
 interface cardHeaderProps {
   categoryName: string;
@@ -17,7 +18,7 @@ const s = StyleSheet.create({
   container: {
     width: '100%',
     height: 64,
-    backgroundColor: '#333',
+    backgroundColor: colors.cardHeader,
     flexDirection: 'row',
     alignItems: 'center',
   },

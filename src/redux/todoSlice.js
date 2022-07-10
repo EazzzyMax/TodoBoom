@@ -55,6 +55,7 @@ const cardsSlice = createSlice({
       });
     },
     changeCurrentCard(state, action) {
+      console.log('------ changeCurrentCard (redux)');
       console.log('card ID', action.payload.cardId);
       let id = 0;
       state.cards.forEach((element, index) => {

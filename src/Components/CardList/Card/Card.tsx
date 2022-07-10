@@ -6,13 +6,14 @@ import TodoList from './TodoList/TodoList';
 
 interface cardProps {
   card: ICard;
+  archiveCard: () => void;
 }
 
-const Card: FC<cardProps> = ({ card, changeCurrentCardId }) => {
+const Card: FC<cardProps> = ({ archiveCard, card }) => {
   return (
     <View style={s.container}>
       <CardHeader categoryName={card.cardName} />
-      <TodoList changeCurrentCardId={changeCurrentCardId} todos={card.todos} />
+      <TodoList archiveCard={archiveCard} todos={card.todos} />
     </View>
   );
 };

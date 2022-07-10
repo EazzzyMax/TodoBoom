@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { LayoutAnimation, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import TodoCheckBox from './TodoCheckBox';
 import GlobalStyle from '../../../../../utils/GlobalStyle';
 import TodoContextModal from '../../../../../Features/TodoContextModal/TodoContextModal';
@@ -6,6 +6,7 @@ import { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleTodoComplete } from '../../../../../redux/todoSlice';
 import { ITodo } from '../../../../../types/types';
+import { layoutCompleteToggleAnimConfig, layoutDeleteAnimConfig } from '../../../../../utils/LayoutAnimation';
 
 interface todoItemProps {
   todo: ITodo;
@@ -15,7 +16,10 @@ const TodoItem: FC<todoItemProps> = ({ todo }) => {
   const [contextVisibility, setContextVisibility] = useState(false);
 
   const dispatch = useDispatch();
-  const toggleState = () => dispatch(toggleTodoComplete({ id: todo.id }));
+  const toggleState = () => {
+    dispatch(toggleTodoComplete({ id: todo.id }));
+    LayoutAnimation.configureNext(layoutCompleteToggleAnimConfig);
+  };
 
   return (
     <View>
